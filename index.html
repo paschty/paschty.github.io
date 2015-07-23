@@ -16,6 +16,11 @@
                     } else {
                         return char + "" + serviceMixChar;
                     }
+                }).map(function(charOrNumber, index){
+                    if(isNaN(charOrNumber) && index%2==0){
+                        return charOrNumber.toUpperCase();
+                    }
+                    return charOrNumber;
                 }).join("");
             });
         }, true);
@@ -31,7 +36,7 @@
     <legend>service name</legend>
     <input id="servicename" type="text"/>
 </fieldset>
-<input id="generate" type="button" value="Generiere!!">
+<input id="generate" type="button" value="generate">
 <fieldset>
     <legend>result</legend>
     <input id="result" type="text"/>
