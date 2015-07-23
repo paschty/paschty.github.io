@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script>
+        window.addEventListener("load", function () {
+            document.getElementById("generate").addEventListener("click", function () {
+                var masterPassword = document.getElementById("masterpassword").value;
+                var serviceName = document.getElementById("servicename").value;
+                var serviceChars = serviceName.split("");
+
+                document.getElementById("result").value = masterPassword.split("").map(function (char, index) {
+                    var serviceMixChar = serviceChars[index % serviceChars.length];
+                    if (index % 2 == 0) {
+                        var serviceCharASCII = serviceMixChar.toLowerCase().charCodeAt(0);
+                        var serviceCharAlph = serviceCharASCII - "a".charCodeAt(0) + 1;
+                        return char + "" + serviceCharAlph;
+                    } else {
+                        return char + "" + serviceMixChar;
+                    }
+                }).join("");
+            });
+        }, true);
+    </script>
+</head>
+<body>
+<h1>simple password generator</h1>
+<fieldset>
+    <legend>master password</legend>
+    <input id="masterpassword" type="password"/>
+</fieldset>
+<fieldset>
+    <legend>service name</legend>
+    <input id="servicename" type="text"/>
+</fieldset>
+<input id="generate" type="button" value="Generiere!!">
+<fieldset>
+    <legend>result</legend>
+    <input id="result" type="text"/>
+</fieldset>
+</body>
+</html>
